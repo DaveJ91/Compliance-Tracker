@@ -1,0 +1,13 @@
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'compliance/style.css' %}">
+    </head>
+    <body>
+        <h1>This is the list of declarations:</h1>
+        {% for declaration in declaration_list %}
+            <li>{{declaration.division}} {{declaration.month}} {{declaration.year}}</li>
+        {% endfor %}
+        
+    </body>
+</html>
