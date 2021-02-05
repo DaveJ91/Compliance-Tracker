@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 class Country(models.Model):
     name = models.CharField(max_length=40)
@@ -50,6 +51,8 @@ class Declaration(models.Model):
     division = models.CharField(max_length=40)
     month = models.CharField(max_length=40)
     year = models.CharField(max_length=40)
+    period_start = models.DateField(null=True)
+    period_end = models.DateField(null=True)
     is_payable = models.BooleanField(default=False)
     payable_receivable_amount = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
@@ -60,9 +63,12 @@ class Declaration(models.Model):
     is_reviewed = models.BooleanField(default=False)
     is_filed = models.BooleanField(default=False)
     is_paid = models.BooleanField(default=False)
+    status = models.CharField(max_length=100)
+    tax_registration = models.ForeignKey(TaxRegistration, on_delete=models.CASCADE)
+    completion_pct = models.IntegerField()
 
     def __str__(self):
-        return self.declaration_type
+        return f"{self.division} {self.declaration_type} {self.country} {self.month} {self.year}"
     
 
 

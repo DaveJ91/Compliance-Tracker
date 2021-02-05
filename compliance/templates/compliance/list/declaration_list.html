@@ -1,13 +1,53 @@
-<html>
-    <head>
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'compliance/style.css' %}">
-    </head>
-    <body>
-        <h1>This is the list of declarations:</h1>
-        {% for declaration in declaration_list %}
-            <li>{{declaration.division}} {{declaration.month}} {{declaration.year}}</li>
-        {% endfor %}
-        
-    </body>
-</html>
+{% extends "../base.html" %}
+
+{% load static %}
+
+{% block content %}
+   
+
+    <table class="ui single lined table">
+        <thead>
+            <th>Division</th>
+            <th>Tax Registration</th>
+            <th>Country</th>
+            <th>Declaration</th>
+            <th>Period</th>
+            <th>Deadline</th>
+            <th>Completion</th>
+            <th>Status</th>
+        </thead>
+        <tbody>
+            {% for declaration in declarations %}
+            <a href="{% url 'declaration_detail' declaration.id %}">
+                <tr>
+                    <td><a href="{% url 'declaration_detail' declaration.id %}">{{ declaration.division }}</a></td>
+                    <td>{{ declaration.tax_registration }}</td>
+                    <td><i class="{{ declaration.country.abbreviation}} flag"></i> {{ declaration.country }} </td>
+                    <td>{{ declaration.declaration_type }}</td>
+                    <td>{{ declaration.period_start }}-{{ declaration.period_end }}</td>
+                    <td>{{ declaration.country.vat_deadline }}</td>           
+                    <td><div class="ui teal progress" data-percent="{{declaration.completion_pct}}" data-total="100" id='example'>
+                        <div class="bar"></div>
+                    </div></td>
+                    <td>{{ declaration.status }}</td>
+                </tr>
+            </a>
+            {% endfor %}
+           
+        </tbody>
+    </table>
+
+    {% for declaration in declarations %}
+    
+   
+    {% endfor %}
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    $('.progress').progress()
+</script>
+{% endblock%}
+    

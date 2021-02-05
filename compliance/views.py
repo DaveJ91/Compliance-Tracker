@@ -6,7 +6,7 @@ from .models import *
 # List Views
 def declaration_list(request):
     declarations = Declaration.objects.all()
-    context = {'declaration_list':declaration_list}
+    context = {'declarations':declarations}
     return render(request, 'compliance/list/declaration_list.html', context)
 
 def team_member_list(request):
