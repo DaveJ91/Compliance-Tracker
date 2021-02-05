@@ -28,7 +28,7 @@ class TeamMember(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
-class Tax_Registration(models.Model):
+class TaxRegistration(models.Model):
     tax_id = models.CharField(max_length=12)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     divsion = models.ForeignKey(Division, on_delete=models.CASCADE)
