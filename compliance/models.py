@@ -20,19 +20,10 @@ class Division(models.Model):
     def __str__(self):
         return f"{self.code} {self.name}"
 
-class TeamMember(models.Model):
-    first_name = models.CharField(max_length=40)
-    last_name = models.CharField(max_length=40)
-    role = models.CharField(max_length=40)
-    is_authorized_reviewer = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"
-
 class TaxRegistration(models.Model):
     tax_id = models.CharField(max_length=12)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    divsion = models.ForeignKey(Division, on_delete=models.CASCADE)
+    division = models.ForeignKey(Division, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.tax_id
@@ -48,7 +39,6 @@ class Declaration(models.Model):
         choices=DECLARATION_CHOICES,
         default='VAT'
     )
-    division = models.CharField(max_length=40)
     month = models.CharField(max_length=40)
     year = models.CharField(max_length=40)
     period_start = models.DateField(null=True)
@@ -56,7 +46,7 @@ class Declaration(models.Model):
     is_payable = models.BooleanField(default=False)
     payable_receivable_amount = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    reviewer = models.ForeignKey(TeamMember, on_delete=models.CASCADE)
+    reviewer = models.CharField(max_length=40)
     preparer = models.CharField(max_length=40)
     time_budget = models.IntegerField()
     is_submitted_for_review = models.BooleanField(default=False)

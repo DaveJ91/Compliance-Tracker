@@ -1,0 +1,26 @@
+{% extends "../base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<form method="post" action="{% url 'user_login' %}" class='ui form'>
+    {% csrf_token %}
+    <div class="field">
+        <input type="text" placeholder="Username" id='username-field' name='username'>
+    </div>
+    <div class="field">
+        <input type="text" placeholder="Password" id='password-field' name='password'>
+    </div>
+        <input type="submit" value="login">
+
+</form>
+
+{% endblock content %}
+
+{% block scripts %}
+<script>
+  
+
+</script>
+{% endblock scripts %}

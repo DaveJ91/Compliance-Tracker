@@ -1,7 +1,37 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import loader
+from django.contrib.auth import authenticate, login, logout
 
 from .models import *
+
+# User Authentication Views
+def user_login_view(request):
+    print(request)
+
+    if request.method == 'POST':
+        
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            print('logged in')
+        else:
+            # No backend authenticated the credentials
+            print('invalid user')
+        
+    else:
+        print('get')
+    
+    context={}
+    return render(request, 'compliance/user_authentication/login.html', context)
+
+def user_logout_view(request):
+    logout(request)
+    return redirect(user_login_view)
+
 
 # List Views
 def declaration_list(request):
@@ -9,10 +39,6 @@ def declaration_list(request):
     context = {'declarations':declarations}
     return render(request, 'compliance/list/declaration_list.html', context)
 
-def team_member_list(request):
-    team_members = TeamMember.objects.all()
-    context = {'team_members': team_members}
-    return render(request, 'compliance/list/team_member_list.html', context)
 
 def country_list(request):
     countries = Country.objects.all()
@@ -35,10 +61,6 @@ def declaration_detail(request,id):
     context = {'declaration': declaration}
     return render(request, 'compliance/detail/declaration_detail.html', context)
 
-def team_member_detail(request, id):
-    team_member = TeamMember.objects.get(pk=id)
-    context = {'team_member':team_member}
-    return render(request, 'compliance/detil/team_member_detail.html', context)
 
 def country_detail(request, id):
     country = Country.objects.get(pk=id)
@@ -54,6 +76,8 @@ def division_detail(request, id):
     division = Division.objects.get(pk=id)
     context = {'division': division}
     return render(request, 'compliance/detail/division_detail.html')
+
+
 
 
     

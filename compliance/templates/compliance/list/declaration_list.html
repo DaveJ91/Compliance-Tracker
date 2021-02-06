@@ -20,7 +20,7 @@
             {% for declaration in declarations %}
             <a href="{% url 'declaration_detail' declaration.id %}">
                 <tr>
-                    <td><a href="{% url 'declaration_detail' declaration.id %}">{{ declaration.division }}</a></td>
+                    <td><a href="{% url 'declaration_detail' declaration.id %}">{{ declaration.tax_registration.divison }}</a></td>
                     <td>{{ declaration.tax_registration }}</td>
                     <td><i class="{{ declaration.country.abbreviation}} flag"></i> {{ declaration.country }} </td>
                     <td>{{ declaration.declaration_type }}</td>

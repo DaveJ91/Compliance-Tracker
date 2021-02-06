@@ -1,11 +1,134 @@
-<html>
-    <body>
-        <h1>This is the declaration detail page</h1>
+{% extends "../base.html" %}
 
-        <p>{{ declaration.declaration_type }}</p>
-        <p>{{ declaration.division }}</p>
+{% load static %}
+
+{% block content %}
+
+<div class='ui grid'>
+
+    <!-- Row 1 -->
+    <div class="row">
+
+        <!-- Declaration Details -->
+        <div class="five wide column">
+            <div class="ui segment">
+                <h2>Declaration Details</h2>
+                <table>
+                    <tr>
+                        <td>Entity:</td>
+                        <td>{{ declaration.tax_registration.division.code }} {{ declaration.tax_registration.division.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Tax ID:</td>
+                        <td>{{ declaration.tax_registration.tax_id }}</td>
+                    </tr>
+                    <tr>
+                        <td>Declaration:</td>
+                        <td>{{ declaration.declaration_type }}</td>
+                    </tr>
+                    <tr>
+                        <td>Period:</td>
+                        <td>{{ declaration.period_start}} - {{declaration.period_end}} </td>
+                    </tr>
+                    <tr>
+                        <td>Submission Deadline:</td>
+                        <td>{{ declaration.country.vat_deadline}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Payable Box -->
+        <div class="five wide column">
+            <div class="ui segment">
+                <div class="ui large statistic">
+                    <div class='value'>
+                        {{ declaration.payable_receivable_amount }}
+                    </div>
+                    <div class="label">
+                        Payable
+                    </div>
+                </div>
+                <i class='huge calculator icon'></i>
+
+            </div>
+        </div>
+
+        <!-- Days to Filing Deadline -->
+        <div class="five wide column">
+            <div class="ui segment">
+                <div class="ui large red statistic">
+                    <div class='value'>
+                        {{ declaration.country.vat_deadline }}
+                    </div>
+                    <div class="label">
+                        Days to Filing Deadline
+                    </div>
+                </div>
+                <i class='huge calendar icon'></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class='row'>
+
+        <!-- Checklist -->
+        <div class="five wide column">
+            <div class="ui segment">
+                <h2>Checklist:</h2>
+                
+                <div class="ui checkbox">
+                    <label>Downloaded Reports</label>
+                    <input type="checkbox" name="example">
+                </div>
+                <div class="ui divider"></div>
+
+                <div class="ui checkbox">
+                    <label>Declaration Prepared</label>
+                    <input type="checkbox" name="example">
+                </div>
+                <div class="ui divider"></div>
+
+                <div class="ui checkbox">
+                    <label>Declaration Reviewed</label>
+                    <input type="checkbox" name="example">
+                </div>
+                <div class="ui divider"></div>
+
+                <div class="ui checkbox">
+                    <label>Declaration Filed</label>
+                    <input type="checkbox" name="example">
+                </div>
+                <div class="ui divider"></div>
+
+                <div class="ui checkbox">
+                    <label>Payment Made</label>
+                    <input type="checkbox" name="example">
+                </div>
+                <div class="ui divider"></div>
+
+
 
         
-    </body>
-</html>
+            </div>
 
+
+        </div>
+
+        
+        <div class="five wide column">
+
+        </div>
+        <div class="five wide column"></div>
+
+
+
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}
