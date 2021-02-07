@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 import datetime
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 
 class Country(models.Model):
     name = models.CharField(max_length=40)
@@ -41,25 +41,24 @@ class Declaration(models.Model):
         choices=DECLARATION_CHOICES,
         default='VAT'
     )
-    month = models.CharField(max_length=40)
-    year = models.CharField(max_length=40)
+    month = models.CharField(max_length=40, null=True)
+    year = models.CharField(max_length=40, null=True)
     period_start = models.DateField(null=True)
     period_end = models.DateField(null=True)
     is_payable = models.BooleanField(default=False)
     payable_receivable_amount = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    time_budget = models.IntegerField()
+    country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True)
+    time_budget = models.IntegerField(default=60)
     is_submitted_for_review = models.BooleanField(default=False)
     is_reviewed = models.BooleanField(default=False)
     is_filed = models.BooleanField(default=False)
     is_paid = models.BooleanField(default=False)
-    status = models.CharField(max_length=100)
-    tax_registration = models.ForeignKey(TaxRegistration, on_delete=models.CASCADE)
-    completion_pct = models.IntegerField()
+    status = models.CharField(max_length=100, default='not started')
+    tax_registration = models.ForeignKey(TaxRegistration, on_delete=models.CASCADE, null=True)
+    completion_pct = models.IntegerField(null=True)
+    preparer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviewer', null=True)
+    reviewer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='preparer', null=True)
+
 
     def __str__(self):
         return f"{self.declaration_type} {self.country} {self.month} {self.year}"
-    
-
-
-
