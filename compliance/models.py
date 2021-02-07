@@ -1,5 +1,7 @@
 from django.db import models
+from django.conf import settings
 import datetime
+from django.contrib.auth.models import User
 
 class Country(models.Model):
     name = models.CharField(max_length=40)
@@ -46,8 +48,6 @@ class Declaration(models.Model):
     is_payable = models.BooleanField(default=False)
     payable_receivable_amount = models.DecimalField(decimal_places=2, max_digits=10, default=0.00)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    reviewer = models.CharField(max_length=40)
-    preparer = models.CharField(max_length=40)
     time_budget = models.IntegerField()
     is_submitted_for_review = models.BooleanField(default=False)
     is_reviewed = models.BooleanField(default=False)
@@ -58,7 +58,7 @@ class Declaration(models.Model):
     completion_pct = models.IntegerField()
 
     def __str__(self):
-        return f"{self.division} {self.declaration_type} {self.country} {self.month} {self.year}"
+        return f"{self.declaration_type} {self.country} {self.month} {self.year}"
     
 
 
