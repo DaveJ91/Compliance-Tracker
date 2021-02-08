@@ -1,0 +1,2 @@
+id,declaration_type,month,period_start,period_end,is_payable,payable_receivable_amount,time_budget,is_submitted_for_review,is_reviewed,is_filed,is_paid,status,completion_pct,country_id,preparer_id,reviewer_id,tax_registration_id,year
+1,VAT,January,2021-02-01,2021-02-28,0,14333398,240,0,0,0,0,Started,10,2,2,1,3,2021

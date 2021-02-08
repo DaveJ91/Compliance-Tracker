@@ -1,0 +1,5 @@
+id,password,last_login,is_superuser,username,last_name,email,is_staff,is_active,date_joined,first_name
+1,pbkdf2_sha256$216000$ofmssE8CKNcI$y9TPXrReKFDV6V54Enfnh/JKYi0ZhaIGC31pGNzni0E=,2021-02-07 13:51:41.648312,1,david,O'Meara,david.omeara91@gmail.com,1,1,2021-02-04 20:53:36,Dave
+2,pbkdf2_sha256$216000$QSpwCzUfP3vX$WdCkvm823ZYa6T3jqPCDFN+3RZ0OaK7ZN9bLxGgIw8s=,2021-02-06 23:25:47.922006,0,John_Kane,Kane,johnkane@fakeemail.com,0,1,2021-02-06 22:07:44,John
+3,pbkdf2_sha256$216000$pMgMXfEXJ8VB$bVbULIQ771iyQWrzIXxf8Xirs9CSNF09t1K5y3fjpnk=,,0,Kate_Hamilton,Hamilton,katehamilton@companyemail.com,0,1,2021-02-06 22:21:43,Kate
+4,pbkdf2_sha256$216000$d9qD7fKK23Y1$sDORBgRjhpvt8J4DDGdlLstx08b+m4WL2k4KsaPkQKI=,,0,Robbie_Smith,Smith,robbiesmith@companyemail.com,0,1,2021-02-06 22:22:21,Robbie

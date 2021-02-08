@@ -1,0 +1,8 @@
+id,ec_sales_deadline,intrastat_deadline,abbreviation,name,vat_deadline
+1,15,22,AT,Austria,22
+2,23,23,IE,Ireland,23
+3,20,26,FR,France,25
+5,20,26,IT,Italy,16
+6,15,15,DE,Germany,15
+7,24,24,SE,Sweden,24
+10,19,20,ES,Spain,15
